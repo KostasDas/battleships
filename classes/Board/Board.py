@@ -50,7 +50,7 @@ class Board:
         except IndexError:
             print("Could not populate cells. Cell overflow error - wrong direction")
             return False
-        if end_x > self.X_AXIS:
+        if end_x > self.X_AXIS or end_x < 0:
             print("Could not populate cells. Cell overflow error - wrong direction")
             return False
 
