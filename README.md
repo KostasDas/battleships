@@ -1,5 +1,5 @@
-# battleships
-Just a regular extendable battleships game
+# Battleships
+The classic battleships game
 
 
 Clone at your local environment and run main. No 3d party libraries
