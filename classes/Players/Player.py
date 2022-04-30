@@ -32,10 +32,22 @@ class Player(ABC):
 
     @abstractmethod
     def hit(self, b: Board) -> Cell:
+        """
+        Overwrite this method in your implementation of the Player abstract class in order to customize the
+        hit mechanics. It is a requirement if you wish to create your own player
+        :param b:
+        :return:
+        """
         pass
 
     @abstractmethod
     def place_ship(self, p: Ship) -> None:
+        """
+        Overwrite this method in your implementation of the Player abstract class in order to customize the ship
+        placement. It is a requirement if you wish to create your own player
+        :param p:
+        :return:
+        """
         pass
 
     def has_lost(self) -> bool:

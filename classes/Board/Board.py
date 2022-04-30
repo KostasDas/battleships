@@ -16,6 +16,10 @@ class Board:
         self.hit_cell = None
 
     def get_current_hit(self) -> Cell:
+        """
+        Returns the last hit on the board
+        :return:
+        """
         return self.hit_cell
 
     def initialize_board(self):
@@ -24,6 +28,12 @@ class Board:
                 self.board.append(Cell(x, y))
 
     def place_ship(self, placement: str, ship: Ship) -> bool:
+        """
+        Places a ship in the board. Returns True if the placement was successful
+        :param placement:
+        :param ship:
+        :return:
+        """
         placement = placement.upper()
         if not self.verify_placement(placement):
             return False
@@ -35,6 +45,13 @@ class Board:
         return True
 
     def calculate_end(self, start: Cell, size: int, direction: str) -> Union[bool, Cell]:
+        """
+        Calculates the end cell from a start cell and a direction.
+        :param start:
+        :param size:
+        :param direction:
+        :return:
+        """
         end_x = start.x
         end_y = start.y
         y_index = self.Y_AXIS.index(end_y)
@@ -57,6 +74,11 @@ class Board:
         return Cell(end_x, end_y)
 
     def verify_placement(self, placement: str) -> bool:
+        """
+        Verifies user input for ship placement
+        :param placement:
+        :return:
+        """
         if len(placement) != 3:
             print("Incorrect placement information")
             return False
@@ -71,7 +93,13 @@ class Board:
             return False
         return True
 
-    def board_occupied(self, start, end):
+    def board_occupied(self, start: Cell, end: Cell) -> bool:
+        """
+        Returns true if the board already contains a ship in between the start and end cells
+        :param start:
+        :param end:
+        :return:
+        """
         cells = self.get_cells_between_vertically(start.x, start.y, end.y) if start.x == end.x \
             else self.get_cells_between_horizontally(start.y, start.x, end.x)
         for cell in cells:
@@ -81,6 +109,11 @@ class Board:
         return False
 
     def print(self, enemy=False):
+        """
+        Prints your board or the enemy board (with ships hidden)
+        :param enemy:
+        :return:
+        """
         print("", end=3 * " ")
         for x in range(self.X_AXIS):
             print(x, end=3 * " ")
@@ -116,6 +149,12 @@ class Board:
             self.place_ship_horizontally(start, end, ship)
 
     def find_cell(self, x: int, y: str) -> Cell:
+        """
+        Returns a cell given the x and y coordinates
+        :param x:
+        :param y:
+        :return:
+        """
         for b in self.board:
             if b.x == x and b.y == y:
                 return b
@@ -123,6 +162,11 @@ class Board:
         raise IndexError(f"Could not find a cell at {x} and {y}")
 
     def hit(self, hit: str) -> bool:
+        """
+        Validate the hit and implement it on the board
+        :param hit:
+        :return:
+        """
         hit = hit.upper()
         if len(hit) != 2:
             print("Incorrect coordinates length. Should be two characters")
