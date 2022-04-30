@@ -27,8 +27,15 @@ class Player(ABC):
     def get_name(self) -> str:
         return self.name
 
+    def get_board(self) -> Board:
+        return self.board
+
     @abstractmethod
     def hit(self, b: Board) -> Cell:
+        pass
+
+    @abstractmethod
+    def place_ship(self, p: Ship) -> None:
         pass
 
     def has_lost(self) -> bool:

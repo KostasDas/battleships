@@ -10,24 +10,16 @@ class Game:
     def start(self):
         self.place_ships(self.player1)
         self.place_ships(self.player2)
-
         self.play()
 
-
     def place_ships(self, p: Player):
-        board = p.board
-        print(f"{p.get_name()} please place your ships using the grid below.")
         self.print_instructions()
-
-        board.print()
+        print(f"{p.get_name()} please place your ships using the grid below.")
         for ship in p.get_ships():
+            p.get_board().print()
             print(f"Please place {ship.get_name()} of size {ship.get_size()}")
-            print("Enter start: ")
-            start = input()
-            while not board.place_ship(start, ship):
-                self.print_instructions()
-                start = input()
-            board.print()
+            print("Enter starting position: ")
+            p.place_ship(ship)
 
     def play(self):
         current_player = self.player1
@@ -53,7 +45,7 @@ class Game:
             # swap players
             current_player = other_player
             other_player = temp
-        winner = current_player if current_player.has_lost() else other_player
+        winner = current_player if other_player.has_lost() else current_player
         print(f"Congratulations {winner.get_name()}!! YOUR VAST SUPERIORITY OVER NAVAL WARFARE WILL NOT BE DENIED")
 
 
