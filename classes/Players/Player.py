@@ -15,7 +15,7 @@ class Player(ABC):
         self.destroyer = Ship(ShipTypes.Destroyer)
         self.board = Board()
 
-    def get_ships(self) -> []:
+    def get_ships(self) -> [Ship]:
         return [
             self.carrier,
             self.battleship,
