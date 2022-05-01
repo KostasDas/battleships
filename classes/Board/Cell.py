@@ -24,7 +24,12 @@ class Cell:
         return self.ship
 
     def enemy_print(self):
-        return "+" if self.is_hit() else '-'
+        if self.is_hit() and self.ship is None:
+            return "+"
+        elif self.is_hit():
+            return "x"
+        else:
+            return "-"
 
     def __str__(self):
         if self.is_hit():

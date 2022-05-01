@@ -7,7 +7,7 @@ class Ship:
         self.hit_counter = 0
 
     def get_size(self) -> int:
-        return self.ship.value
+        return int(self.ship.value)
 
     def get_name(self) -> str:
         return self.ship.name
